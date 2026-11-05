@@ -1,0 +1,139 @@
+@import 'tailwindcss';
+@import './scenes.css';
+@import './ducks.css';
+@import './ui-animations.css';
+
+/* Design tokens taken from the Claude Design canvas "Pochi y Nube". */
+@theme {
+  --color-ink: #4a3424;
+  --color-ink-deep: #2e1f14;
+  --color-cream: #fff8ec;
+  --color-honey: #f6b83c;
+  --color-honey-dark: #e39b1b;
+  --color-sky: #cfeaf4;
+  --color-grass: #b9dc9a;
+  --color-grass-deep: #9fcb80;
+  --color-rose: #f7d3c7;
+  --color-blush: #f7a9b4;
+  --color-heart: #e8525a;
+  --color-heart-soft: #f08a8a;
+  --color-terracotta: #b4553b;
+  --color-sand: #e3c9a0;
+  --color-muted: #e6dccb;
+  --color-paper: #efe7da;
+  --color-olive: #7a8445;
+  --color-olive-deep: #5e6833;
+  --color-olive-soft: #9ba36a;
+  --color-placeholder: #b49a84;
+  --color-gold: #f6c93c;
+  --color-night: #2a3566;
+
+  --font-display: 'Baloo 2', 'Arial Rounded MT Bold', sans-serif;
+  --font-body: 'Nunito', 'Trebuchet MS', sans-serif;
+
+  /* Solid "pop" shadows: every card and button in the design sits on one. */
+  --shadow-pop-xs: 0 3px 0 var(--color-ink);
+  --shadow-pop-sm: 0 4px 0 var(--color-ink);
+  --shadow-pop: 0 5px 0 var(--color-ink);
+  --shadow-pop-md: 0 6px 0 var(--color-ink);
+  --shadow-pop-lg: 0 7px 0 var(--color-ink);
+  --shadow-pop-xl: 0 8px 0 var(--color-ink);
+  --shadow-pop-2xl: 0 10px 0 var(--color-ink);
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: var(--color-ink);
+    font-family: var(--font-body);
+    color: var(--color-ink);
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: default;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-honey);
+    outline-offset: 3px;
+  }
+
+  input::placeholder {
+    color: var(--color-placeholder);
+  }
+}
+
+/* Button feel from the design: lift on hover, squash on press. */
+@utility press-pop {
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    filter 0.12s ease,
+    background-color 0.2s ease;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-3px);
+    filter: brightness(1.04);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(5px) scale(0.97);
+    box-shadow: 0 1px 0 var(--color-ink) !important;
+  }
+}
+
+/* Main menu cards tilt a little when hovered. */
+@utility press-pop-tilt {
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    filter 0.12s ease;
+
+  &:hover {
+    transform: translateY(-4px) rotate(-0.6deg);
+    filter: brightness(1.04);
+  }
+
+  &:active {
+    transform: translateY(6px) scale(0.97);
+    box-shadow: 0 1px 0 var(--color-ink) !important;
+  }
+}
+
+/* In-game buttons only squash: the player is busy. */
+@utility press-squash {
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    filter 0.12s ease;
+
+  &:hover {
+    filter: brightness(1.05);
+  }
+
+  &:active,
+  &[data-pressed='true'] {
+    transform: translateY(5px) scale(0.95);
+    box-shadow: 0 1px 0 var(--color-ink) !important;
+  }
+}
+
+/* Big stroked titles ("Pochi y Nube", "Unirse a una sala"). */
+@utility text-outline {
+  color: var(--color-cream);
+  paint-order: stroke fill;
+}

@@ -1,0 +1,26 @@
+{
+  "name": "pochi-nube",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Pochi y Nube: juego multijugador de patitos que atrapan comida",
+  "packageManager": "pnpm@10.34.7",
+  "engines": {
+    "node": ">=24.11.0",
+    "pnpm": ">=10"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter @pochi/server --filter @pochi/client dev",
+    "dev:server": "pnpm --filter @pochi/server dev",
+    "dev:client": "pnpm --filter @pochi/client dev",
+    "build": "pnpm --filter @pochi/server build && pnpm --filter @pochi/client build",
+    "start": "pnpm --filter @pochi/server start",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14"
+  }
+}

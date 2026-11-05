@@ -1,0 +1,225 @@
+/* ---- Pochi ---- */
+.pochi-breathe {
+  animation: pochi-breathe 2.6s ease-in-out infinite;
+  transform-origin: 100px 204px;
+}
+@keyframes pochi-breathe {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.015, 0.985);
+  }
+}
+.pochi-bob {
+  animation: pochi-bob 0.5s ease-in-out infinite;
+}
+@keyframes pochi-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-4px) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-4px) rotate(2deg);
+  }
+}
+.pochi-front-foot {
+  animation: pochi-step 0.5s ease-in-out infinite;
+  transform-origin: 89px 180px;
+}
+.pochi-back-foot {
+  animation: pochi-step 0.5s ease-in-out infinite reverse;
+  transform-origin: 121px 180px;
+}
+@keyframes pochi-step {
+  0%,
+  100% {
+    transform: rotate(24deg);
+  }
+  50% {
+    transform: rotate(-24deg);
+  }
+}
+.pochi-jump {
+  animation: pochi-jump 0.8s ease-in-out infinite;
+}
+@keyframes pochi-jump {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+.pochi-shadow {
+  animation: pochi-shadow 0.8s ease-in-out infinite;
+  transform-origin: 100px 208px;
+}
+@keyframes pochi-shadow {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.75);
+  }
+}
+.pochi-flap {
+  animation: pochi-flap 0.24s ease-in-out infinite alternate;
+  transform-origin: 130px 138px;
+}
+@keyframes pochi-flap {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(40deg);
+  }
+}
+.pochi-beak {
+  animation: pochi-beak 0.32s ease-in-out infinite alternate;
+  transform-origin: 172px 78px;
+}
+@keyframes pochi-beak {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(22deg);
+  }
+}
+.pochi-blink {
+  animation: pochi-blink 4s ease-in-out infinite;
+  transform-origin: 154px 58px;
+}
+@keyframes pochi-blink {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+
+/* ---- Nube ---- */
+.nube-breathe {
+  animation: nube-breathe 2.8s ease-in-out infinite;
+  transform-origin: 100px 204px;
+}
+@keyframes nube-breathe {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.02, 0.98);
+  }
+}
+.nube-bob {
+  animation: nube-bob 0.46s ease-in-out infinite;
+}
+@keyframes nube-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-5px) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-5px) rotate(3deg);
+  }
+}
+.nube-front-foot {
+  animation: nube-step 0.46s ease-in-out infinite;
+  transform-origin: 89px 180px;
+}
+.nube-back-foot {
+  animation: nube-step 0.46s ease-in-out infinite reverse;
+  transform-origin: 121px 180px;
+}
+@keyframes nube-step {
+  0%,
+  100% {
+    transform: rotate(22deg);
+  }
+  50% {
+    transform: rotate(-22deg);
+  }
+}
+.nube-jump {
+  animation: nube-jump 0.8s ease-in-out infinite;
+}
+@keyframes nube-jump {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+.nube-shadow {
+  animation: nube-shadow 0.8s ease-in-out infinite;
+  transform-origin: 100px 208px;
+}
+@keyframes nube-shadow {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.75);
+  }
+}
+.nube-flap {
+  animation: nube-flap 0.22s ease-in-out infinite alternate;
+  transform-origin: 132px 140px;
+}
+@keyframes nube-flap {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(42deg);
+  }
+}
+.nube-beak {
+  animation: nube-beak 0.28s ease-in-out infinite alternate;
+  transform-origin: 172px 76px;
+}
+@keyframes nube-beak {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(24deg);
+  }
+}
+.nube-blink {
+  animation: nube-blink 3.6s ease-in-out infinite;
+  transform-origin: 154px 56px;
+}
+@keyframes nube-blink {
+  0%,
+  90%,
+  100% {
+    transform: scaleY(1);
+  }
+  94% {
+    transform: scaleY(0.1);
+  }
+}

@@ -1,0 +1,354 @@
+/* ---- Meadow ---- */
+.meadow-sun-rays {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: meadow-spin 40s linear infinite;
+}
+.meadow-sun {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: meadow-pulse 3.2s ease-in-out infinite;
+}
+@keyframes meadow-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes meadow-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+.meadow-cloud-1 {
+  animation: meadow-drift 22s ease-in-out infinite alternate;
+}
+.meadow-cloud-2 {
+  animation: meadow-drift 30s ease-in-out infinite alternate-reverse;
+}
+.meadow-cloud-3 {
+  animation: meadow-drift 17s ease-in-out infinite alternate;
+}
+@keyframes meadow-drift {
+  from {
+    transform: translateX(-60px);
+  }
+  to {
+    transform: translateX(60px);
+  }
+}
+.meadow-tree-crown {
+  transform-box: fill-box;
+  transform-origin: 50% 95%;
+  animation: meadow-sway 4.5s ease-in-out infinite;
+}
+.meadow-tree-crown-alt {
+  transform-box: fill-box;
+  transform-origin: 50% 95%;
+  animation: meadow-sway 5.2s ease-in-out infinite reverse;
+}
+@keyframes meadow-sway {
+  0%,
+  100% {
+    transform: rotate(-1.4deg);
+  }
+  50% {
+    transform: rotate(1.4deg);
+  }
+}
+.meadow-water-shine {
+  animation: meadow-water-shine 3s ease-in-out infinite alternate;
+}
+@keyframes meadow-water-shine {
+  from {
+    transform: translateX(-12px);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateX(12px);
+    opacity: 1;
+  }
+}
+.meadow-flower {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: meadow-sway 2.6s ease-in-out infinite;
+}
+.meadow-night-twinkle {
+  animation: meadow-night-twinkle 2.6s ease-in-out infinite;
+}
+@keyframes meadow-night-twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.meadow-firefly {
+  animation: meadow-firefly 3.2s ease-in-out infinite;
+}
+@keyframes meadow-firefly {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(8px, -12px);
+  }
+}
+.meadow-moon {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: meadow-moon 6s ease-in-out infinite;
+}
+@keyframes meadow-moon {
+  0%,
+  100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+.meadow-moon-snore {
+  animation: meadow-moon-snore 3s ease-out infinite;
+}
+@keyframes meadow-moon-snore {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(14px, -26px);
+  }
+}
+
+/* ---- Orchard ---- */
+.orchard-sun-rays {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: orchard-spin 40s linear infinite;
+}
+.orchard-sun {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: orchard-pulse 3.2s ease-in-out infinite;
+}
+@keyframes orchard-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes orchard-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+.orchard-cloud-1 {
+  animation: orchard-drift 24s ease-in-out infinite alternate;
+}
+.orchard-cloud-2 {
+  animation: orchard-drift 19s ease-in-out infinite alternate-reverse;
+}
+@keyframes orchard-drift {
+  from {
+    transform: translateX(-70px);
+  }
+  to {
+    transform: translateX(70px);
+  }
+}
+.orchard-tree-crown {
+  transform-box: fill-box;
+  transform-origin: 50% 95%;
+  animation: orchard-shake 3.8s ease-in-out infinite;
+}
+.orchard-tree-crown-alt {
+  transform-box: fill-box;
+  transform-origin: 50% 95%;
+  animation: orchard-shake 4.4s ease-in-out infinite reverse;
+}
+@keyframes orchard-shake {
+  0%,
+  100% {
+    transform: rotate(-1.2deg);
+  }
+  45% {
+    transform: rotate(1.2deg);
+  }
+  50% {
+    transform: rotate(-2.5deg);
+  }
+  55% {
+    transform: rotate(2.5deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+}
+.orchard-night-twinkle {
+  animation: orchard-night-twinkle 2.6s ease-in-out infinite;
+}
+@keyframes orchard-night-twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.orchard-firefly {
+  animation: orchard-firefly 3.2s ease-in-out infinite;
+}
+@keyframes orchard-firefly {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-8px, -12px);
+  }
+}
+.orchard-moon {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: orchard-moon 6s ease-in-out infinite;
+}
+@keyframes orchard-moon {
+  0%,
+  100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
+/* ---- Lagoon ---- */
+.lagoon-sun {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: lagoon-pulse 4s ease-in-out infinite;
+}
+@keyframes lagoon-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+.lagoon-cloud-1 {
+  animation: lagoon-drift 26s ease-in-out infinite alternate;
+}
+.lagoon-cloud-2 {
+  animation: lagoon-drift 20s ease-in-out infinite alternate-reverse;
+}
+@keyframes lagoon-drift {
+  from {
+    transform: translateX(-60px);
+  }
+  to {
+    transform: translateX(60px);
+  }
+}
+.lagoon-snowflake {
+  animation: lagoon-snowflake 9s linear infinite;
+}
+@keyframes lagoon-snowflake {
+  from {
+    transform: translate(0, -60px);
+  }
+  to {
+    transform: translate(40px, 760px);
+  }
+}
+.lagoon-ice-sparkle {
+  animation: lagoon-ice-sparkle 2.4s ease-in-out infinite alternate;
+}
+@keyframes lagoon-ice-sparkle {
+  from {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.lagoon-pine {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: lagoon-sway 5s ease-in-out infinite;
+}
+@keyframes lagoon-sway {
+  0%,
+  100% {
+    transform: rotate(-1deg);
+  }
+  50% {
+    transform: rotate(1deg);
+  }
+}
+.lagoon-night-twinkle {
+  animation: lagoon-night-twinkle 2.6s ease-in-out infinite;
+}
+@keyframes lagoon-night-twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.lagoon-aurora {
+  animation: lagoon-aurora 9s ease-in-out infinite alternate;
+}
+@keyframes lagoon-aurora {
+  from {
+    transform: translateX(-40px);
+    opacity: 0.6;
+  }
+  to {
+    transform: translateX(40px);
+    opacity: 1;
+  }
+}
+.lagoon-moon {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: lagoon-moon 6s ease-in-out infinite;
+}
+@keyframes lagoon-moon {
+  0%,
+  100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}

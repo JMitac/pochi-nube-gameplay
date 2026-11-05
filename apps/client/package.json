@@ -1,0 +1,35 @@
+{
+  "name": "@pochi/client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@fontsource/baloo-2": "^5.3.0",
+    "@fontsource/nunito": "^5.3.0",
+    "colyseus.js": "~0.16.22",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "three": "~0.180.0",
+    "tone": "14.8.49",
+    "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "@pochi/shared": "workspace:*",
+    "@tailwindcss/vite": "^4.1.18",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "@types/three": "~0.180.0",
+    "@vitejs/plugin-react": "^5.0.4",
+    "tailwindcss": "^4.1.18",
+    "typescript": "~5.9.3",
+    "vite": "^7.1.12",
+    "vitest": "^3.2.7"
+  }
+}
