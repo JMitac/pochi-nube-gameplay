@@ -8,11 +8,13 @@ import { MAP_LABELS, MODE_LABELS } from '../../domain/labels';
 import { useScreenMusic } from '../../hooks/useScreenMusic';
 import { roomSession } from '../../network/RoomSession';
 import { useNavigationStore } from '../../state/navigationStore';
-import { selectMe, selectPartner, useRoomStore } from '../../state/roomStore';
+import { selectMe, selectPartner, useRoomStore, type LobbyPlayer, type RoomSnapshot } from '../../state/roomStore';
 import { formatClock } from '../../utils/time';
 import { RoomCodeBanner } from './RoomCodeBanner';
 import { DuckSlotCard, EmptyDuckSlotCard } from './DuckSlotCard';
+import { PartnerReadyModal } from './PartnerReadyModal';
 import { StartButton } from './StartButton';
+import { usePartnerReadyNotice } from './usePartnerReadyNotice';
 import { VisibilityBadge } from './VisibilityBadge';
 
 /** 5 · Sala de espera */
@@ -31,6 +33,18 @@ export function WaitingRoomScreen() {
   };
 
   if (!snapshot || !me) return <ScreenLoading />;
+  return <WaitingRoom snapshot={snapshot} me={me} partner={partner} onLeave={() => void leaveRoom()} />;
+}
+
+interface WaitingRoomProps {
+  snapshot: RoomSnapshot;
+  me: LobbyPlayer;
+  partner: LobbyPlayer | undefined;
+  onLeave(): void;
+}
+
+function WaitingRoom({ snapshot, me, partner, onLeave }: WaitingRoomProps) {
+  const partnerReadyNotice = usePartnerReadyNotice(me, partner);
 
   const isSolo = snapshot.mode === 'solo';
   const canSwapDuck = isSolo || !partner;
@@ -44,7 +58,7 @@ export function WaitingRoomScreen() {
         <PillButton
           tone="cream"
           className="shadow-pop gap-2 border-4 py-2 pl-3.5 pr-[22px] text-[22px]"
-          onClick={() => void leaveRoom()}
+          onClick={onLeave}
         >
           <BackArrowIcon size={24} />
           Salir
@@ -77,6 +91,14 @@ export function WaitingRoomScreen() {
         </div>
         <StartButton snapshot={snapshot} me={me} partner={partner} />
       </div>
+
+      {partnerReadyNotice.isOpen && partner && (
+        <PartnerReadyModal
+          partner={partner}
+          onStart={() => roomSession.setReady(true)}
+          onClose={partnerReadyNotice.dismiss}
+        />
+      )}
     </div>
   );
 }

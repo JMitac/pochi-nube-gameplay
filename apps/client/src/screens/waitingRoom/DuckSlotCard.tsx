@@ -52,9 +52,9 @@ export function DuckSlotCard({ player, ownerLabel, ownerChipColor, direction, on
           </button>
         )}
       </div>
-      <DuckFigure duckId={player.duckId} size={230} direction={direction} />
+      <DuckFigure duckId={player.duckId} size={214} direction={direction} />
       <span className="font-display text-[40px] font-extrabold leading-none">{DUCK_PROFILES[player.duckId].displayName}</span>
-      <span className="text-center text-[17px] font-bold">{DUCK_LIKES[player.duckId]}</span>
+      <span className="text-center text-[17px] font-bold leading-tight">{DUCK_LIKES[player.duckId]}</span>
     </div>
   );
 }
