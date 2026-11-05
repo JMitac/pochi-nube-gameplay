@@ -1,7 +1,7 @@
 {
   "name": "pochi-nube",
   "private": true,
-  "version": "0.1.0",
+  "version": "2.0.0",
   "description": "Pochi y Nube: juego multijugador de patitos que atrapan comida",
   "packageManager": "pnpm@10.34.7",
   "engines": {

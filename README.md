@@ -157,6 +157,44 @@ Algunas cosas no estaban definidas en los documentos o chocaban entre sí. Esto 
 - **Pantalla.** Todas las pantallas son el lienzo de 1280×720 del diseño escalado para caber en cualquier ventana. En un celular en vertical aparece un aviso para girarlo.
 - **Pantalla completa.** El botón de las cuatro esquinas (en la portada y junto a la pausa) usa la Fullscreen API; en Android además fija la pantalla en horizontal. Safari de iPhone no permite pantalla completa a las páginas web, así que ahí el botón explica cómo usar _Compartir → Agregar a pantalla de inicio_. El juego trae `manifest.webmanifest` e íconos, así que abierto desde ese ícono se ve sin las barras del navegador y el botón se oculta.
 
+## Versiones y despliegue
+
+El historial de versiones está en [`CHANGELOG.md`](CHANGELOG.md). Se usa [SemVer](https://semver.org/lang/es/):
+
+- **Parche** (`2.0.1`): solo se arregla algo.
+- **Menor** (`2.1.0`): algo nuevo que no rompe nada.
+- **Mayor** (`3.0.0`): cliente y servidor dejan de ser compatibles con la versión anterior (por ejemplo, cambia el protocolo).
+
+El mismo número va en el tag de git, en la imagen de Docker y en Terraform, así se sabe qué código está corriendo en Azure.
+
+### Cómo publicar una versión
+
+1. Mueve lo de _Sin publicar_ del `CHANGELOG.md` a una sección nueva con el número y la fecha.
+2. Cambia `"version"` en los cuatro `package.json` (raíz, `apps/client`, `apps/server` y `packages/shared`).
+3. Crea el commit, el tag y súbelos:
+
+   ```bash
+   git commit -am "chore: release 2.1.0"
+   git tag v2.1.0
+   git push --follow-tags
+   ```
+
+4. Construye y sube la imagen con la misma etiqueta:
+
+   ```bash
+   docker build -t ghcr.io/jmitac/pochi-nube-game:v2.1.0 .
+   docker push ghcr.io/jmitac/pochi-nube-game:v2.1.0
+   ```
+
+5. Actualiza Azure: cambia `image_tag` en `infra/terraform.tfvars` (o usa `-var`) y aplica:
+
+   ```bash
+   cd infra
+   terraform apply -var="image_tag=v2.1.0"
+   ```
+
+Usa siempre una etiqueta nueva: si vuelves a subir `latest` o una etiqueta que ya existe, Azure no se entera del cambio.
+
 ## Problemas comunes
 
 - **`pnpm` no se reconoce:** ejecuta `corepack enable` en una terminal como administrador.
