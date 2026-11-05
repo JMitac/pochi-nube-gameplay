@@ -3,14 +3,23 @@ import { audioEngine } from '../audio/audioInstance';
 import { useSettingsStore } from '../state/settingsStore';
 
 /**
- * Browsers only allow sound after the first tap or key press.
- * This starts the audio engine at that moment and applies the saved volumes.
+ * Events that count as a real user gesture on every browser.
+ * On phones a finger going *down* (pointerdown/touchstart) does not unlock audio;
+ * lifting it (pointerup/touchend) or a click does.
+ */
+const GESTURE_EVENTS = ['pointerup', 'touchend', 'click', 'keydown'] as const;
+
+/**
+ * Browsers only allow sound after a tap or key press. This unlocks the audio inside
+ * that gesture, starts the engine and applies the saved volumes. It keeps listening
+ * while the sound is not running, because iOS suspends audio again when the app goes
+ * to the background or a call comes in.
  */
 export function useAudioUnlock(): void {
   useEffect(() => {
     const unlock = () => {
-      window.removeEventListener('pointerdown', unlock);
-      window.removeEventListener('keydown', unlock);
+      if (audioEngine.isReady && audioEngine.isRunning) return;
+      audioEngine.unlockFromGesture();
       void audioEngine.init().then(() => {
         const { musicVolume, effectsVolume } = useSettingsStore.getState();
         audioEngine.setVolume('music', musicVolume);
@@ -18,11 +27,10 @@ export function useAudioUnlock(): void {
         audioEngine.resumeRequestedTrack();
       });
     };
-    window.addEventListener('pointerdown', unlock);
-    window.addEventListener('keydown', unlock);
+
+    for (const eventName of GESTURE_EVENTS) window.addEventListener(eventName, unlock, { capture: true, passive: true });
     return () => {
-      window.removeEventListener('pointerdown', unlock);
-      window.removeEventListener('keydown', unlock);
+      for (const eventName of GESTURE_EVENTS) window.removeEventListener(eventName, unlock, { capture: true });
     };
   }, []);
 }

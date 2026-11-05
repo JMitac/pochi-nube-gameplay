@@ -48,6 +48,15 @@ function playSafely(play: () => void): void {
  * TypeScript port of the soundtrack's "PochiAudio" engine (Tone.js 14.8).
  * Everything is generated live: no audio files are needed.
  */
+/**
+ * iPhone: without this, the ring/silent switch mutes all Web Audio.
+ * "playback" makes the game sound like a music app (Safari 16.4+; ignored elsewhere).
+ */
+function allowPlaybackWithSilentSwitch(): void {
+  const audioSession = (navigator as Navigator & { audioSession?: { type: string } }).audioSession;
+  if (audioSession && audioSession.type !== 'playback') audioSession.type = 'playback';
+}
+
 export class AudioEngine {
   private tone: ToneLibrary | null = null;
   private mix: EngineMix | null = null;
@@ -56,6 +65,20 @@ export class AudioEngine {
   private recordedQuacks: Partial<Record<DuckId, import('tone').Player>> = {};
   private current: BuiltTrack | null = null;
   private initPromise: Promise<void> | null = null;
+  /**
+   * Tone.js starts downloading as soon as the page loads. Mobile browsers only allow
+   * sound if the audio context is resumed *synchronously* inside a tap, so the library
+   * must already be loaded when that tap happens.
+   */
+  private readonly toneLoading: Promise<ToneLibrary> = import('tone');
+  private loadedTone: ToneLibrary | null = null;
+  private hasPlayedSilentUnlock = false;
+
+  constructor() {
+    void this.toneLoading.then((tone) => {
+      this.loadedTone = tone;
+    });
+  }
   private lastJingle: { id: JingleId | null; atMs: number } = { id: null, atMs: 0 };
   private isTransportStarted = false;
 
@@ -67,6 +90,35 @@ export class AudioEngine {
 
   get isReady(): boolean {
     return this.mix !== null;
+  }
+
+  /** True when the browser is really letting sound out. */
+  get isRunning(): boolean {
+    return this.loadedTone?.getContext().state === 'running';
+  }
+
+  /**
+   * Call this directly inside a tap or key handler (no await before it).
+   * It resumes the audio context while the browser still counts the gesture,
+   * which is what Android Chrome and iOS Safari require.
+   */
+  unlockFromGesture(): void {
+    allowPlaybackWithSilentSwitch();
+    const tone = this.loadedTone;
+    if (!tone) return;
+    const rawContext = tone.getContext().rawContext as AudioContext;
+    if (rawContext.state !== 'running') void rawContext.resume();
+    this.playSilentUnlockSound(rawContext);
+  }
+
+  /** Older iOS versions only start the audio output after a sound is played inside the tap. */
+  private playSilentUnlockSound(rawContext: AudioContext): void {
+    if (this.hasPlayedSilentUnlock) return;
+    this.hasPlayedSilentUnlock = true;
+    const source = rawContext.createBufferSource();
+    source.buffer = rawContext.createBuffer(1, 1, 22050);
+    source.connect(rawContext.destination);
+    source.start(0);
   }
 
   get playingTrack(): TrackId | null {
@@ -84,7 +136,7 @@ export class AudioEngine {
   }
 
   private async setUp(): Promise<void> {
-    const tone = await import('tone');
+    const tone = await this.toneLoading;
     await tone.start();
     const music = new tone.Volume(volumeToDecibels(tone, this.volumes.music) + MUSIC_HEADROOM_DB).toDestination();
     const pauseFilter = new tone.Filter(OPEN_FILTER_HZ, 'lowpass').connect(music);
