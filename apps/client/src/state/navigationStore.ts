@@ -5,11 +5,18 @@ export type ScreenId =
 
 interface NavigationState {
   screen: ScreenId;
+  previousScreen: ScreenId | null;
   navigate(screen: ScreenId): void;
+  goBack(): void;
 }
 
 /** Which of the design's screens is showing. */
-export const useNavigationStore = create<NavigationState>((set) => ({
+export const useNavigationStore = create<NavigationState>((set, get) => ({
   screen: 'title',
-  navigate: (screen) => set({ screen }),
+  previousScreen: null,
+  navigate: (screen) => set((state) => ({ screen, previousScreen: state.screen })),
+  goBack: () => {
+    const { previousScreen } = get();
+    if (previousScreen) get().navigate(previousScreen);
+  },
 }));

@@ -25,6 +25,7 @@ const PAGES: HowToPlayPage[] = [
 /** 9 · Cómo jugar (6 pages) */
 export function HowToPlayScreen() {
   const navigate = useNavigationStore((state) => state.navigate);
+  const goBack = useNavigationStore((state) => state.goBack);
   const [pageIndex, setPageIndex] = useState(0);
   useScreenMusic('waiting');
 
@@ -39,10 +40,10 @@ export function HowToPlayScreen() {
       <Panel className="absolute left-10 top-7 flex h-[664px] w-[1200px] flex-col gap-[18px] rounded-[40px] px-8 py-6">
         <div className="flex items-center gap-[18px]">
           <RoundIconButton
-            label="Volver al menú"
+            label="Volver"
             tone="white"
             className="shadow-pop-sm size-14 border-4"
-            onClick={() => navigate('menu')}
+            onClick={goBack}
           >
             <BackArrowIcon size={26} />
           </RoundIconButton>
@@ -84,9 +85,9 @@ export function HowToPlayScreen() {
 
         <div className="flex items-center justify-between">
           <PillButton
-            tone={isFirst ? 'paper' : 'white'}
+            tone="white"
             className="shadow-pop-sm border-4 px-7 py-1.5 text-[22px]"
-            onClick={() => setPageIndex((index) => Math.max(0, index - 1))}
+            onClick={() => (isFirst ? goBack() : setPageIndex((index) => index - 1))}
           >
             Anterior
           </PillButton>

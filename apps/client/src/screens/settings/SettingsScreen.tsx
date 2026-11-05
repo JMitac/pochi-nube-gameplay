@@ -20,7 +20,7 @@ const HAND_OPTIONS: Array<{ id: Handedness; label: string }> = [
 
 /** 6 · Configuración */
 export function SettingsScreen() {
-  const navigate = useNavigationStore((state) => state.navigate);
+  const goBack = useNavigationStore((state) => state.goBack);
   const settings = useSettingsStore();
   useScreenMusic('menu');
 
@@ -31,10 +31,10 @@ export function SettingsScreen() {
       <Panel className="absolute left-20 top-9 flex h-[648px] w-[1120px] flex-col gap-[22px] rounded-[40px] px-10 py-7">
         <div className="flex items-center gap-[18px]">
           <RoundIconButton
-            label="Volver al menú"
+            label="Volver"
             tone="white"
             className="shadow-pop-sm size-14 border-4"
-            onClick={() => navigate('menu')}
+            onClick={goBack}
           >
             <BackArrowIcon size={26} />
           </RoundIconButton>
