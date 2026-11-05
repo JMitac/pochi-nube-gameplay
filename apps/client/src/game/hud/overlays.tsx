@@ -1,6 +1,7 @@
 import { forwardRef, useEffect, useState } from 'react';
 import { HeartIcon, PauseIcon } from '../../art/icons/icons';
 import { PillButton, RoundIconButton } from '../../components/ui/buttons';
+import { FullscreenButton } from '../../components/ui/FullscreenButton';
 import { Panel } from '../../components/ui/surfaces';
 import type { HudSnapshot } from '../../state/hudStore';
 import { useFloatingTextStore, type FloatingText } from '../effects/floatingTextStore';
@@ -108,6 +109,7 @@ export function TopRightControls({ roomCode, onPause }: TopRightControlsProps) {
       <RoundIconButton label="Pausa" className="shadow-pop size-[60px] border-4" onClick={onPause}>
         <PauseIcon size={24} />
       </RoundIconButton>
+      <FullscreenButton className="shadow-pop size-[60px] border-4" iconSize={26} hintPlacement="below" />
     </div>
   );
 }

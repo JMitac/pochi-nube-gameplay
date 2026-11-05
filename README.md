@@ -155,6 +155,7 @@ Algunas cosas no estaban definidas en los documentos o chocaban entre sí. Esto 
 - **Fuentes.** _Baloo 2_ y _Nunito_ se instalan con `@fontsource`, así el juego no depende de Google Fonts y funciona sin conexión.
 - **Noche.** De 7 p. m. a 6 a. m. según la hora del jugador, como en el diseño: cielo, luna, luciérnagas y la versión de cuna de la música.
 - **Pantalla.** Todas las pantallas son el lienzo de 1280×720 del diseño escalado para caber en cualquier ventana. En un celular en vertical aparece un aviso para girarlo.
+- **Pantalla completa.** El botón de las cuatro esquinas (en la portada y junto a la pausa) usa la Fullscreen API; en Android además fija la pantalla en horizontal. Safari de iPhone no permite pantalla completa a las páginas web, así que ahí el botón explica cómo usar _Compartir → Agregar a pantalla de inicio_. El juego trae `manifest.webmanifest` e íconos, así que abierto desde ese ícono se ve sin las barras del navegador y el botón se oculta.
 
 ## Problemas comunes
 

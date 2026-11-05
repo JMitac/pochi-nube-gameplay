@@ -248,3 +248,21 @@ export function SparkleIcon({ size, style }: { size: number; style?: CSSProperti
     </svg>
   );
 }
+
+/** Four corners pointing out: "go fullscreen". */
+export function ExpandIcon({ size = 30 }: IconProps) {
+  return (
+    <StrokeIcon size={size} strokeWidth={3}>
+      <path d="M4 9 V4 H9 M15 4 H20 V9 M20 15 V20 H15 M9 20 H4 V15" />
+    </StrokeIcon>
+  );
+}
+
+/** Four corners pointing in: "leave fullscreen". */
+export function CompressIcon({ size = 30 }: IconProps) {
+  return (
+    <StrokeIcon size={size} strokeWidth={3}>
+      <path d="M9 4 V9 H4 M20 9 H15 V4 M15 20 V15 H20 M4 15 H9 V20" />
+    </StrokeIcon>
+  );
+}

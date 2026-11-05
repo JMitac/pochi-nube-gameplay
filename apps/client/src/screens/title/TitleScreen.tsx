@@ -1,6 +1,7 @@
 import { DuckFigure } from '../../art/ducks/DuckFigure';
 import { GearIcon, HeartIcon, PlayIcon } from '../../art/icons/icons';
 import { RoundIconButton, PillButton } from '../../components/ui/buttons';
+import { FullscreenButton } from '../../components/ui/FullscreenButton';
 import { ScreenBackground } from '../../components/ScreenBackground';
 import { useScreenMusic } from '../../hooks/useScreenMusic';
 import { useNavigationStore } from '../../state/navigationStore';
@@ -58,6 +59,7 @@ export function TitleScreen() {
         >
           <GearIcon size={36} />
         </RoundIconButton>
+        <FullscreenButton className="shadow-pop-lg size-[76px] border-[5px]" iconSize={34} />
       </div>
     </div>
   );
