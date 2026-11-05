@@ -5,3 +5,10 @@ dist
 .env.local
 .DS_Store
 coverage
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfvars
+crash.log

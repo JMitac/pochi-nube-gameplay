@@ -1,0 +1,11 @@
+# Copia este archivo como terraform.tfvars y completa tus datos.
+# terraform.tfvars NO se sube a git (está en .gitignore).
+
+subscription_id = "00000000-0000-0000-0000-000000000000"
+alert_email     = "tu-correo@ejemplo.com"
+
+# Opcionales (ya tienen valor por defecto):
+# location        = "eastus2"
+# container_image = "ghcr.io/jmitac/pochi-nube-game"
+# image_tag       = "latest"
+# budget_amount   = 5
