@@ -48,7 +48,7 @@ export function CreateRoomScreen() {
     <div className="bg-sky font-body text-ink relative h-[720px] w-[1280px] overflow-hidden">
       <ScreenBackground tint="ink" />
 
-      <Panel className="absolute left-20 top-9 flex h-[648px] w-[1120px] flex-col gap-[22px] rounded-[40px] px-10 pb-8 pt-7">
+      <Panel className="absolute left-20 top-9 flex h-[648px] w-[1120px] flex-col gap-3.5 rounded-[40px] px-10 pb-8 pt-7">
         <div className="flex items-center gap-[18px]">
           <RoundIconButton
             label="Volver al menú"
